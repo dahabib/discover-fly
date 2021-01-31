@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--Header and Menu Section-->
+    <header class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a class="active" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Booking Section-->
+    <main class="main-content container">
+        <div class="booking-form">
+            <h3>Booking Flights</h3>
+            <div class="input-group">
+                <label for="">Flying From</label>
+                <input id="flyeing-from" class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+            </div>
+            <div class="input-group">
+                <label for="">Flying To</label>
+                <input id="flyeing-to" class="inp-style" type="text" name="" placeholder="New York, United States">
+            </div>
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">Departure</label>
+                    <input id="departure-date" class="inp-style" type="date" name="">
+                </div>
+                <div class="input-group">
+                    <label for="">Return</label>
+                    <input id="return-date" class="inp-style" type="date" name="">
+                </div>
+            </div>
+            <div class="input-group f-class">
+                <div>
+                    <label for="">First Class ($150)</label>
+                    <input id="first-class-input" class="inp-style inp-width" type="number" name="">
+                </div>
+                <div class="plus-minus-btn">
+                    <button id="increase-first-class"> + </button>
+                    <button id="decrease-first-class"> - </button>
+                </div>
+             
+            </div>
+            <div class="input-group f-class">
+                <div>
+                    <label for="">Economy ($100)</label>
+                    <input id="economy-class-input" class="inp-style inp-width" type="number" name="">
+                </div>
+                <div class="plus-minus-btn">
+                    <button id="increase-economy-class"> + </button>
+                    <button id="decrease-economy-class"> - </button>
+                </div>
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p id="subtotalAmmount">$000</p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p id="vatAmmount">$000</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p id="totalAmmount">$000</p>
+                    </div>
+                </div>
+            </div>
+            <button id="btnBookNow" class="btn-style">Book Now</button>
+        </div>
+
+        <div class="booking-content">
+            <h1>discover <br> around the world</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
+        </div>
+    </section>
+
+    <!--Thank You-->
+    <script>
+
+        const firstClassIncreaseBtn = document.getElementById('increase-first-class');
+        const firstClassDecreaseBtn = document.getElementById('decrease-first-class');
+        const economyClassIncreaseBtn = document.getElementById('increase-economy-class');
+        const economyClassDecreaseBtn = document.getElementById('decrease-economy-class');
+        let firstClassTicket = document.getElementById('first-class-input');
+        let economyTicket = document.getElementById('economy-class-input');
+
+        // First Class Increase Button Click Event
+        firstClassIncreaseBtn.addEventListener('click', function () {
+            increaseTicket(firstClassTicket);
+            displayCost();
+        });
+
+        // First Class Decrease Button Click Event
+        firstClassDecreaseBtn.addEventListener('click', function () {
+            decreaseTicket(firstClassTicket);
+            displayCost();
+        });
+
+        // Economy Increase Button Click Event
+        economyClassIncreaseBtn.addEventListener('click', function () {
+            increaseTicket(economyTicket);
+            displayCost();
+        });
+
+        // Economy Decrease Button Click Event
+        economyClassDecreaseBtn.addEventListener('click', function () {
+            decreaseTicket(economyTicket);
+            displayCost();
+        });
+
+
+        // Increse Input Value
+        function increaseTicket(inputValue) {
+            inputValue.value++;
+            return inputValue.value;
+        }
+        // Decrease Input Value
+        function decreaseTicket(inputValue) {
+            let decValue = inputValue.value;
+
+            if (!decValue || decValue < 0) {
+                inputValue = 0;
+            } else {
+                inputValue.value--;
+            }
+            return inputValue.value;
+        }
+
+        //Calculate total cost
+
+        function displayCost(){
+            let firstClassCount = document.getElementById('first-class-input').value;
+            let firstClassCost = firstClassCount * 150;
+            let economyClassCount = document.getElementById('economy-class-input').value;
+            let economyClassCost = economyClassCount * 100;
+            let subTotalAmmount = firstClassCost + economyClassCost;
+            document.getElementById('subtotalAmmount').innerText = '$' + subTotalAmmount;
+
+            let vatAmmount = subTotalAmmount * 0.1;
+            document.getElementById('vatAmmount').innerText = '$' + vatAmmount;
+
+            let totalCost = subTotalAmmount + vatAmmount;
+            document.getElementById('totalAmmount').innerText = '$' + totalCost;
+        }
+ 
+    </script>
+</body>
+
+</html>
