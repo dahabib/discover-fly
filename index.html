@@ -141,21 +141,21 @@
         });
 
 
-        // Increse Input Value
-        function increaseTicket(inputValue) {
-            inputValue.value++;
-            return inputValue.value;
+        // Increase Input Value
+        function increaseTicket(input) {
+            input.value++;
+            return input.value;
         }
         // Decrease Input Value
-        function decreaseTicket(inputValue) {
-            let decValue = inputValue.value;
+        function decreaseTicket(input) {
+            let decValue = input.value;
 
             if (!decValue || decValue < 0) {
-                inputValue = 0;
+                input.value = 0;
             } else {
-                inputValue.value--;
+                input.value--;
             }
-            return inputValue.value;
+            return input.value;
         }
 
         //Calculate total cost
@@ -165,6 +165,7 @@
             let firstClassCost = firstClassCount * 150;
             let economyClassCount = document.getElementById('economy-class-input').value;
             let economyClassCost = economyClassCount * 100;
+            
             let subTotalAmmount = firstClassCost + economyClassCost;
             document.getElementById('subtotalAmmount').innerText = '$' + subTotalAmmount;
 
